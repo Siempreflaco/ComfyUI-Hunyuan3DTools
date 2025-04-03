@@ -1,0 +1,1859 @@
+{
+  "id": "312aa0fd-25e2-4dac-9dea-3c2c24e148c3",
+  "revision": 0,
+  "last_node_id": 89,
+  "last_link_id": 183,
+  "nodes": [
+    {
+      "id": 79,
+      "type": "KSamplerSelect",
+      "pos": [
+        3095.167236328125,
+        -1972.956787109375
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            179
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "dpmpp_sde"
+      ]
+    },
+    {
+      "id": 76,
+      "type": "CFGGuider",
+      "pos": [
+        3095.167236328125,
+        -2242.956787109375
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 176
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 170
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 171
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "slot_index": 0,
+          "links": [
+            174
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CFGGuider"
+      },
+      "widgets_values": [
+        7
+      ]
+    },
+    {
+      "id": 77,
+      "type": "RandomNoise",
+      "pos": [
+        3095.167236328125,
+        -2372.956787109375
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "shape": 3,
+          "type": "NOISE",
+          "slot_index": 0,
+          "links": [
+            168
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        54,
+        "fixed"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 82,
+      "type": "DetailDaemonSamplerNode",
+      "pos": [
+        3424.54638671875,
+        -2191.715087890625
+      ],
+      "size": [
+        315,
+        274
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 179
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            180
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-detail-daemon",
+        "ver": "f391accbda2d309cdcbec65cb9fcc80a41197b20",
+        "Node name for S&R": "DetailDaemonSamplerNode"
+      },
+      "widgets_values": [
+        0.15000000000000002,
+        0.3,
+        0.7000000000000001,
+        0.5,
+        1,
+        0,
+        0,
+        0,
+        true,
+        0
+      ]
+    },
+    {
+      "id": 78,
+      "type": "BasicScheduler",
+      "pos": [
+        2773.52880859375,
+        -2111.715087890625
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 178
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "slot_index": 0,
+          "links": [
+            169
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "karras",
+        35,
+        0.6700000000000002
+      ]
+    },
+    {
+      "id": 84,
+      "type": "Note",
+      "pos": [
+        2777.724853515625,
+        -2306.492919921875
+      ],
+      "size": [
+        303.9232177734375,
+        155.00096130371094
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "The denoise value here blends the latent space with the orignal image.  \nLower values will so now change\nMid values will blend more\nHigh values will be random"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 56,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        2395.167236328125,
+        -2102.956787109375
+      ],
+      "size": [
+        315,
+        186
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 132
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 133
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 136
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 152
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 138
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            134
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            135
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        0.6700000000000002,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 57,
+      "type": "ControlNetLoader",
+      "pos": [
+        2003.3739013671875,
+        -2053.62548828125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            136
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "SDXL\\controlnet-depth-sdxl-1.0\\diffusion_pytorch_model.safetensors"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "InpaintModelConditioning",
+      "pos": [
+        2761.135986328125,
+        -1821.5340576171875
+      ],
+      "size": [
+        315,
+        138
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 134
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 135
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 115
+        },
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 141
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 139
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            170
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            171
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            172
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "InpaintModelConditioning"
+      },
+      "widgets_values": [
+        true
+      ]
+    },
+    {
+      "id": 73,
+      "type": "Hy3DTools_BackProjectInpaint",
+      "pos": [
+        2656.81591796875,
+        -33.83367156982422
+      ],
+      "size": [
+        378,
+        98
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "original_mesh",
+          "type": "TRIMESH",
+          "link": 158
+        },
+        {
+          "name": "inpainted_view",
+          "type": "IMAGE",
+          "link": 159
+        },
+        {
+          "name": "camera_params",
+          "type": "CAMERA_PARAMS",
+          "link": 160
+        }
+      ],
+      "outputs": [
+        {
+          "name": "updated_mesh",
+          "type": "TRIMESH",
+          "links": [
+            163
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Hy3DTools_BackProjectInpaint"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 58,
+      "type": "mxStop",
+      "pos": [
+        1076.96435546875,
+        -363.2811279296875
+      ],
+      "size": [
+        210,
+        26
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "In",
+          "type": "IMAGE",
+          "link": 140
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            141
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "0a3857ada2c1780188b9d5abb95f9f3e6561d976",
+        "Node name for S&R": "mxStop"
+      }
+    },
+    {
+      "id": 60,
+      "type": "Florence2Run",
+      "pos": [
+        276.3900451660156,
+        -1780.2275390625
+      ],
+      "size": [
+        400,
+        364
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 167
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 144
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            146
+          ]
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-florence2",
+        "ver": "257fec56102cf42c7e5a28920b6d1258983ae71c",
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        2,
+        "fixed"
+      ]
+    },
+    {
+      "id": 64,
+      "type": "Text Concatenate",
+      "pos": [
+        762.4454956054688,
+        -1451.5355224609375
+      ],
+      "size": [
+        315,
+        178
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text_a",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "text_a"
+          },
+          "link": 146
+        },
+        {
+          "name": "text_b",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "text_b"
+          },
+          "link": 147
+        },
+        {
+          "name": "text_c",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "text_c"
+          },
+          "link": null
+        },
+        {
+          "name": "text_d",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "text_d"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            181
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "pr-was-node-suite-comfyui-47064894",
+        "ver": "1014f8a1477b8ae0144e16ed4fd6476cd109fb23",
+        "Node name for S&R": "Text Concatenate"
+      },
+      "widgets_values": [
+        ", ",
+        "true",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 85,
+      "type": "Note",
+      "pos": [
+        2399.086669921875,
+        -2297.855712890625
+      ],
+      "size": [
+        303.9232177734375,
+        155.00096130371094
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "This controlnet uses Depth to keep everything coherent.  Changing the end_percent allows it to loosen up with the risk of not following anymore."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 25,
+      "type": "PreviewImage",
+      "pos": [
+        1067.4219970703125,
+        -264.520263671875
+      ],
+      "size": [
+        429.614990234375,
+        448.31201171875
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 81
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 13,
+      "type": "Hy3DUploadMesh",
+      "pos": [
+        285.2687072753906,
+        -241.30020141601562
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "trimesh",
+          "type": "TRIMESH",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-hunyan3dwrapper",
+        "ver": "48dae15e4a38f965eb0227c832b5d5e4f9b72a0c",
+        "Node name for S&R": "Hy3DUploadMesh"
+      },
+      "widgets_values": [
+        "Hy3D_01008_.glb",
+        "image"
+      ]
+    },
+    {
+      "id": 87,
+      "type": "Note",
+      "pos": [
+        665.2042846679688,
+        -504.6641540527344
+      ],
+      "size": [
+        340.22320556640625,
+        208.240966796875
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Adjust the pan_x, pan_y, ortho_scale and so on to find the area you want to inpaint.  Hoping I can replace this with something interactive.\n\nIt also throws an error if it can't render anything on the screen.  As in NO data.\n\nThere is a stop here, that you need to press play on when you're happy.\n\nRight now it's set to be the average head height area.\n\nOnce you have the angle you want, you need to save it and load it into the Load image and draw your mask in there.\n\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 88,
+      "type": "Note",
+      "pos": [
+        1094.1695556640625,
+        -1079.0032958984375
+      ],
+      "size": [
+        367.4959411621094,
+        88
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Load image here and draw your inpaint maks\n\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 89,
+      "type": "Note",
+      "pos": [
+        1066.4735107421875,
+        224.83148193359375
+      ],
+      "size": [
+        426.1736145019531,
+        88
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Save this image when you're happy to load in to the load image and make a mask.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 68,
+      "type": "Hy3DExportMesh",
+      "pos": [
+        3061.77490234375,
+        -38.86983108520508
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "trimesh",
+          "type": "TRIMESH",
+          "link": 163
+        }
+      ],
+      "outputs": [
+        {
+          "name": "glb_path",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            154
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-hunyan3dwrapper",
+        "ver": "ab83a891f20b514463058f21263c7eb9c2610d97",
+        "Node name for S&R": "Hy3DExportMesh"
+      },
+      "widgets_values": [
+        "3D/Hy3D_textured",
+        "glb",
+        true
+      ]
+    },
+    {
+      "id": 34,
+      "type": "Preview3D",
+      "pos": [
+        3399.715087890625,
+        -514.0160522460938
+      ],
+      "size": [
+        610.8303833007812,
+        585.138427734375
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_file",
+          "type": "STRING",
+          "widget": {
+            "name": "model_file"
+          },
+          "link": 154
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "Preview3D",
+        "Camera Info": {
+          "position": {
+            "x": 0.5788887410451262,
+            "y": 4.581662556226533,
+            "z": 2.0013766904478114
+          },
+          "target": {
+            "x": -0.29066565358126367,
+            "y": 4.556020495475815,
+            "z": -0.43796595139781846
+          },
+          "zoom": 1,
+          "cameraType": "perspective"
+        },
+        "Camera Type": "perspective"
+      },
+      "widgets_values": [
+        "3D/Hy3D_textured_00435_.glb",
+        ""
+      ]
+    },
+    {
+      "id": 17,
+      "type": "Hy3DTools_RenderSpecificView",
+      "pos": [
+        658.1423950195312,
+        -237.4451904296875
+      ],
+      "size": [
+        378,
+        410
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "trimesh",
+          "type": "TRIMESH",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "textured_view",
+          "type": "IMAGE",
+          "links": [
+            81,
+            131,
+            140,
+            167
+          ]
+        },
+        {
+          "name": "tangent_normal",
+          "type": "IMAGE",
+          "links": [
+            82
+          ]
+        },
+        {
+          "name": "world_normal",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "position",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "depth",
+          "type": "IMAGE",
+          "links": [
+            85,
+            152
+          ]
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": []
+        },
+        {
+          "name": "original_mesh_out",
+          "type": "TRIMESH",
+          "links": [
+            158
+          ]
+        },
+        {
+          "name": "camera_params",
+          "type": "CAMERA_PARAMS",
+          "links": [
+            160
+          ]
+        },
+        {
+          "name": "detected_texture_size_WH",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Hy3DTools_RenderSpecificView"
+      },
+      "widgets_values": [
+        1024,
+        "orth",
+        1.0000000000000002,
+        0,
+        -0.45000000000000007,
+        0.30000000000000004,
+        0,
+        -15,
+        "0,0,0"
+      ]
+    },
+    {
+      "id": 70,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        2208.12841796875,
+        -364.458984375
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            156
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4xUltrasharp_4xUltrasharpV10.pt"
+      ]
+    },
+    {
+      "id": 69,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        2559.93115234375,
+        -361.44329833984375
+      ],
+      "size": [
+        340.20001220703125,
+        46
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 156
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 155
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            159
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "ImageUpscaleWithModel"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 65,
+      "type": "Text Multiline",
+      "pos": [
+        285.73126220703125,
+        -1365.7880859375
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            147
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "pr-was-node-suite-comfyui-47064894",
+        "ver": "1014f8a1477b8ae0144e16ed4fd6476cd109fb23",
+        "Node name for S&R": "Text Multiline"
+      },
+      "widgets_values": [
+        "very detailed, Taken with a Canon EOS 5D Mark IV (embedding:ziprealism, embedding:PA7_xl-Portrait-ECU)"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1572.26708984375,
+        -1454.81494140625
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 124
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 183
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            132
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "close up, Man, Beard, Helmet, ornate, detail, very detailed, Taken with a Canon EOS 5D Mark IV (embedding:ziprealism, embedding:PA7_xl-Portrait-ECU)"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 51,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1565.424072265625,
+        -1388.247802734375
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 122
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            133
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch, Low quality, blurry, deformed, unrealistic proportions, extra limbs, missing fingers, distorted face, low-detail textures, pixelated, overexposed, unnatural lighting, incorrect anatomy, artifacts, bad composition, stretched features, poorly rendered hands and feet, floating objects, unnatural clothing folds, weird shadows, (embedding:Endless_Up_SDXL_Neg, embedding:ziprealism_neg)"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 47,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        1504.022705078125,
+        -2117.79931640625
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            176,
+            178
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            122,
+            124
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            115,
+            121,
+            138
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "juggernautXL_versionXInpaint.safetensors"
+      ]
+    },
+    {
+      "id": 86,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1112.1876220703125,
+        -1474.685302734375
+      ],
+      "size": [
+        369.6205749511719,
+        209.5724639892578
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 181
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": [
+            183
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "1.2.3",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "The image is a 3D rendering of a human-like creature's head and upper body. The creature appears to be made up of a combination of blue and orange colors, with the blue being the dominant color. The orange is a darker shade, while the blue is a lighter shade. The face of the creature is covered in intricate patterns and designs, with a large, pointed nose and sharp teeth. The eyes are large and round, and the mouth is slightly open, revealing sharp teeth and sharp fangs. The body is covered with a rough, textured surface, with small blue dots scattered throughout. The background is completely black, making the creature stand out., very detailed, Taken with a Canon EOS 5D Mark IV (embedding:ziprealism, embedding:PA7_xl-Portrait-ECU)"
+      ]
+    },
+    {
+      "id": 54,
+      "type": "PreviewImage",
+      "pos": [
+        3386.302490234375,
+        -1226.853759765625
+      ],
+      "size": [
+        623.3535766601562,
+        648.3998413085938
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 129
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 50,
+      "type": "VAEDecode",
+      "pos": [
+        2732.386962890625,
+        -1041.76708984375
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 175
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 121
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            129,
+            155
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 63,
+      "type": "Florence2ModelLoader",
+      "pos": [
+        -106.7763900756836,
+        -1764.8585205078125
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora",
+          "shape": 7,
+          "type": "PEFTLORA",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            144
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-florence2",
+        "ver": "257fec56102cf42c7e5a28920b6d1258983ae71c",
+        "Node name for S&R": "Florence2ModelLoader"
+      },
+      "widgets_values": [
+        "Florence-2-Flux-Large",
+        "fp16",
+        "sdpa"
+      ]
+    },
+    {
+      "id": 80,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        3755.167236328125,
+        -2312.956787109375
+      ],
+      "size": [
+        291.67974853515625,
+        392.2523193359375
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 168
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 174
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 180
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 169
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 172
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            175
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SamplerCustomAdvanced"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 53,
+      "type": "LoadImage",
+      "pos": [
+        1085.3365478515625,
+        -948.6921997070312
+      ],
+      "size": [
+        384.4214782714844,
+        527.22314453125
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            139
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "clipspace/clipspace-mask-8133917.900000006.png [input]",
+        "image",
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      17,
+      13,
+      0,
+      17,
+      0,
+      "TRIMESH"
+    ],
+    [
+      81,
+      17,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      115,
+      47,
+      2,
+      46,
+      2,
+      "VAE"
+    ],
+    [
+      121,
+      47,
+      2,
+      50,
+      1,
+      "VAE"
+    ],
+    [
+      122,
+      47,
+      1,
+      51,
+      0,
+      "CLIP"
+    ],
+    [
+      124,
+      47,
+      1,
+      52,
+      0,
+      "CLIP"
+    ],
+    [
+      129,
+      50,
+      0,
+      54,
+      0,
+      "IMAGE"
+    ],
+    [
+      132,
+      52,
+      0,
+      56,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      133,
+      51,
+      0,
+      56,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      134,
+      56,
+      0,
+      46,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      135,
+      56,
+      1,
+      46,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      136,
+      57,
+      0,
+      56,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      138,
+      47,
+      2,
+      56,
+      4,
+      "VAE"
+    ],
+    [
+      139,
+      53,
+      1,
+      46,
+      4,
+      "MASK"
+    ],
+    [
+      140,
+      17,
+      0,
+      58,
+      0,
+      "*"
+    ],
+    [
+      141,
+      58,
+      0,
+      46,
+      3,
+      "IMAGE"
+    ],
+    [
+      144,
+      63,
+      0,
+      60,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      146,
+      60,
+      2,
+      64,
+      0,
+      "STRING"
+    ],
+    [
+      147,
+      65,
+      0,
+      64,
+      1,
+      "STRING"
+    ],
+    [
+      152,
+      17,
+      4,
+      56,
+      3,
+      "IMAGE"
+    ],
+    [
+      154,
+      68,
+      0,
+      34,
+      0,
+      "STRING"
+    ],
+    [
+      155,
+      50,
+      0,
+      69,
+      1,
+      "IMAGE"
+    ],
+    [
+      156,
+      70,
+      0,
+      69,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      158,
+      17,
+      6,
+      73,
+      0,
+      "TRIMESH"
+    ],
+    [
+      159,
+      69,
+      0,
+      73,
+      1,
+      "IMAGE"
+    ],
+    [
+      160,
+      17,
+      7,
+      73,
+      2,
+      "CAMERA_PARAMS"
+    ],
+    [
+      163,
+      73,
+      0,
+      68,
+      0,
+      "TRIMESH"
+    ],
+    [
+      167,
+      17,
+      0,
+      60,
+      0,
+      "IMAGE"
+    ],
+    [
+      168,
+      77,
+      0,
+      80,
+      0,
+      "NOISE"
+    ],
+    [
+      169,
+      78,
+      0,
+      80,
+      3,
+      "SIGMAS"
+    ],
+    [
+      170,
+      46,
+      0,
+      76,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      171,
+      46,
+      1,
+      76,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      172,
+      46,
+      2,
+      80,
+      4,
+      "LATENT"
+    ],
+    [
+      174,
+      76,
+      0,
+      80,
+      1,
+      "GUIDER"
+    ],
+    [
+      175,
+      80,
+      0,
+      50,
+      0,
+      "LATENT"
+    ],
+    [
+      176,
+      47,
+      0,
+      76,
+      0,
+      "MODEL"
+    ],
+    [
+      178,
+      47,
+      0,
+      78,
+      0,
+      "MODEL"
+    ],
+    [
+      179,
+      79,
+      0,
+      82,
+      0,
+      "SAMPLER"
+    ],
+    [
+      180,
+      82,
+      0,
+      80,
+      2,
+      "SAMPLER"
+    ],
+    [
+      181,
+      64,
+      0,
+      86,
+      0,
+      "STRING"
+    ],
+    [
+      183,
+      86,
+      0,
+      52,
+      2,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6830134553650707,
+      "offset": [
+        691.2943793288011,
+        1565.3345619874206
+      ]
+    },
+    "ue_links": []
+  },
+  "version": 0.4
+}
