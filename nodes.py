@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 from PIL import Image
-import trimesh as Trimesh
 from typing import Any # Added import for Any
 
 
@@ -29,17 +28,29 @@ class Hy3DTools_RenderSpecificView:
                 "elevation": ("FLOAT", {"default": 0, "min": -360, "max": 360, "step": 1}),
                 "bg_color_rgb": ("STRING", {"default": "128, 128, 255", "tooltip": "Background Color (RGB 0-255). Used for textured, world normal, and position views."}), # Corrected tooltip
             },
+            "optional": {
+                "camera_params_override": ("CAMERA_PARAMS",),
+            },
         }
 
-    # Added textured_view output first, plus original mesh, camera params, and debug texture size
     RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE", "IMAGE", "IMAGE", "MASK", "TRIMESH", "CAMERA_PARAMS", "STRING",)
     RETURN_NAMES = ("textured_view", "tangent_normal", "world_normal", "position", "depth", "mask", "original_mesh_out", "camera_params", "detected_texture_size_WH",)
     FUNCTION = "render_view"
     CATEGORY = "Hunyuan3DTools" # New category for our tools
 
-    # Changed function signature back to accept trimesh, added bg_color_rgb back
-    def render_view(self, trimesh: Any, render_size: int, camera_type: str, ortho_scale: float, camera_distance: float, pan_x: float, pan_y: float, azimuth: float, elevation: float, bg_color_rgb: str):
+    def render_view(self, trimesh: Any, render_size: int, camera_type: str, ortho_scale: float, camera_distance: float, pan_x: float, pan_y: float, azimuth: float, elevation: float, bg_color_rgb: str, camera_params_override: dict = None):
 
+        # Use override camera params if provided
+        if camera_params_override is not None:
+            camera_type = camera_params_override.get("camera_type", camera_type)
+            ortho_scale = camera_params_override.get("ortho_scale", ortho_scale)
+            camera_distance = camera_params_override.get("camera_distance", camera_distance)
+            pan_x = camera_params_override.get("pan_x", pan_x)
+            pan_y = camera_params_override.get("pan_y", pan_y)
+            azimuth = camera_params_override.get("azimuth", azimuth)
+            elevation = camera_params_override.get("elevation", elevation)
+
+            
         # Parse background color again
         try:
             bg_color = [int(x.strip())/255.0 for x in bg_color_rgb.split(",")]
