@@ -177,14 +177,25 @@ class Hy3DTools_RenderSpecificView:
 
 
         # --- Render Depth Map ---
-        depth_map, depth_mask = renderer.render_depth(
-             elevation, azimuth, camera_distance=camera_distance, center=None,
-             resolution=render_size, pan_x=pan_x, pan_y=pan_y, return_type='th'
-        )
-        # Depth map is single channel (1, H, W, 1), repeat to 3 channels for IMAGE type
-        depth_image = depth_map.repeat(1, 1, 1, 3)
-        # Apply mask (Depth map doesn't have bg_color option, so mask manually)
-        depth_image = depth_image * depth_mask.float()
+        try:
+            depth_map, depth_mask = renderer.render_depth(
+                elevation, azimuth, camera_distance=camera_distance, center=None,
+                resolution=render_size, pan_x=pan_x, pan_y=pan_y, return_type='th'
+            )
+            # If mesh is not visible, create empty depth map
+            if depth_mask.sum() == 0:
+                depth_map = torch.zeros((render_size, render_size, 1), device=depth_map.device)
+                depth_mask = torch.zeros((render_size, render_size, 1), device=depth_mask.device)
+                print("WARN: Mesh is not visible in this view, creating empty depth map.")
+
+            # Depth map is single channel (1, H, W, 1), repeat to 3 channels for IMAGE type
+            depth_image = depth_map.repeat(1, 1, 1, 3)
+            # Apply mask (Depth map doesn't have bg_color option, so mask manually)
+            depth_image = depth_image * depth_mask.float()
+        except Exception as e:
+            print(f"Error rendering depth map: {e}. Creating empty depth map.")
+            depth_image = torch.zeros((1, render_size, render_size, 3))
+            depth_mask = torch.zeros((1, render_size, render_size, 1))
 
         # --- Final Formatting ---
         # Ensure outputs are B H W C float tensors on CPU (Batch=1)
